@@ -1,0 +1,291 @@
+★ Pony Rogue-like thingy ★
+==========================
+
+Technical
+
+- C / C++
+- Multiplatform
+- Console based | termbox 256clr | steal console part of Putty for wndws
+
+Overarching themes
+-Replayability.
+-You don't save the world, Celestia does not return. You did your best! Bittersweet
+
+Classes / Balancing
+
+- Ponies
+- Pegasus, Unicorn, Earth
+- Extremely Rare alicorn transformation.
+- Transform into other races, really rare / polymorphy.
+- Fatigue as so called 'mana'
+- Magic takes a lot of Fatigue / Unicorns have lot fatigue
+- Unicorns low HP
+
+Items
+
+- Magical artifact thingies
+- Magical scrolls
+- Awesome random gennerated item drops.
+- Inventory / Hammerspace / Sadlebags
+- Random Enchanting both can be good or bad / Expencive
+- Identifing items mechanic.
+
+Gameplay
+- On armoured enemies you can get stuck, If you have spiked horseshoes that are nailed to your hoof, and suffer a critical miss
+- Turn based
+- Random genned world with a few fixed spots
+- No classes, just races, like a multiclass/free system
+- Opening your inv makes you unable to do anything else
+- Friendly NPC's / shops and such
+- NPC Companions FO Style
+&&Can level on some form, to combat abandoning of companions. Avoid OP!
+- RAD text descriptions 
+- Char creation should be very basic, gender name tribe/breed, fast from start to play as we can. Also random name generator.
+
+Story / Setting
+- Story based
+- Not just one bad guy
+- 1-200 years after exile of Luna
+- Cultists of some sort as the evil force.
+- Location is offmap from both comic and walmart.
+&&making the map very randomized and replayable.
+- parts of the story can be switched around based on randomizing and to a lesser extent choice (Or indeed, skipped completely?)
+- "like, you're supposed to go to town X to do whatever but instead you wander around and just trip on the next part of the story" -codl 2013 represent yo
+- Celestia is withdrawn, still in control, but slowly becoming a faceless ruler.
+ The cultists feel threatened by this and try to establish their own ruling over the land, a supposed democracy among the top leaders of the cult ultimately following one entity within the cult. A faux democracy. 
+
+ Ponies forget, as generations pass with Celestias reclusiveness, ponies become less happy, and the cultists more powerful, more aggressive. ??? moar
+
+- Why, how: Player:
+- Player comes to the town, seeking out adventure/justice/???
+
+=== References and links
+
+http://roguebasin.roguelikedevelopment.org/index.php?title=Articles wow shit lots of roguelike doc
+
+
+=== IDEA SPAM BELOW
+
+==Technical things
+blabla we said C or C++ can't be bothered to scroll up and copypaste
+16:07:24 <Scootaloo> also it should be
+16:07:29 <Scootaloo> multi-platform
+
+==Races, classes, balancing, all that shizzle
+15:56:10 <Vivix> I say pone, for fun-
+15:56:29 <Vivix> I mean, that would give magic, strength and flying uses, you know? That could be interesting gameplay
+15:57:11 <Vivix> cause yeah a fun thing iin nethack was--tunneling making holes in floors
+15:57:15 <Vivix> a pegasus could fly up-
+15:57:35 <Vivix> aaa VERY powerful unicorn could teleport
+15:57:54 <Vivix> but yeah try to base magic and stuff on pony, not dnd or something
+
+16:10:24 <Vivix> well my favourite things from nethack was being able to break walls and floors- and write in the dust to remind myself where I am
+16:11:27 <Vivix> and I'm sure earthpony and unicorn could break doors etc in different ways
+
+16:24:39 <Vivex> should we allow alicorns?
+16:24:59 <codl> not as starting characters
+16:25:21 <codl> but there should be a way to magic yourself into an alicorn
+16:25:35 <codl> extreme blessing for being super cool or whatever
+16:25:38 <Vivex> yeah, like a magic well or osmething?
+16:25:41 <Scootaloo> well
+16:25:48 <Scootaloo> alicorn should be really dificult to get atleast
+16:26:16 <codl> like, get all the 150 puzzle pieces
+16:26:28 <codl> that don't even show up on the map you have to examine every space
+16:26:33 <codl> something crazy like that
+16:26:57 <Vivex> but yeah DIFFICULT
+16:27:05 <codl> or maybe not that crazy, it would be fun if you could get it by an extreme stroke of luck
+
+16:34:20 <Vivex> but yeah unicorns seem to have REALLY low mana
+16:34:26 <Vivex> I mean Twilight get's tired really fast
+16:35:03 <Vivex> Like, twilights machine gun lazer really didn't do much more than stun- but eh
+16:35:23 <Vivex> we know they can hurt ponies, Trixie was getting more and more crazy right? And her last spell she said was going to make them writhe in agony and pain
+
+16:37:21 <Scootaloo> but unicorns should be way weaker HP wise as well :U
+
+16:37:31 <Vivex> I think the show has nerfed them enough for them to be balanced easily
+16:37:37 <Vivex> cause yeah HP, fatigue, mana
+
+18:40:36 <codl> oh! do we allow other races as a starting race
+18:40:47 <codl> like griffins and… maybe not dragons
+18:40:58 <Vivex> known civilized species, yeah
+18:40:59 <codl> dragons would just breeze through
+18:42:09 <codl> different playing style
+18:42:22 <codl> different items they can use
+18:42:41 <Vivex> talons!
+18:42:55 <Vivex> but yeah that could also increase playability, different styles and solutions
+18:43:58 <Vivex> maybe not goats etc, since they couldn't speak in the show etc
+18:44:00 <Vivex> not sure about minotaurs
+18:44:32 <Vivex> I mean they are discord spawn, they might be more feral and more likely to be enemies of ponies
+18:44:38 <Vivex> like kiinda dragons might be,
+18:44:43 <Vivex> griffins might be--mixed
+
+18:46:20 <codl> we can have only ponies as a starting race, and have some sort of polymorphy
+18:47:05 <codl> like really hard to find polymorphy potions
+18:47:21 <Vivex> those could be in place of unlockable etc yeah
+18:48:37 <Vivex> well acting as a unlockable, like a bonus that can be found
+
+===Items? not sure if I should make a section for those yet
+16:36:35 <codl> we'd need magical artifact thingies
+16:36:44 <codl> or no-one will want to play anything but unicorns
+
+17:36:13 <codl> do we want to rely on items a lot?
+17:36:17 <codl> most roguelikes do that
+17:36:37 <codl> but I'm not sure if it would work that well here… how does a pony fire a bow
+17:36:59 <codl> well
+17:37:52 <codl> in nethack for example, after a few floors, you can't rely on hitting things until they die, you have to use items to avoid or kill monsters
+17:38:07 <Vivex> well do want cool loot, but weapons and etc will be made for ponies, or maybe a few excoting griffin ones you cna use with varying ability
+17:39:40 <Vivex> well bow could be more like a magic item or-- a complex/different crossbowy thing of earthpony design
+17:39:54 <Vivex> you know, we have to compensate a lot that way, which would make cool new item types
+17:41:02 <Vivex> but yeah I think we might want to make it a bit like that on the later levels, hack and slash would be difficult
+17:42:03 <Vivex> even earth ponies would probably have a bit of a problem trying to make mouth-wielded swords fast, but hooked horseshoes or something-
+17:45:08 <Vivex> oh man, on armored enemies, a tiny chance of getting stuck on your enemy if you have a critical miss
+
+18:08:29 <codl> inventory
+18:08:33 <codl> should be hammerspace
+18:08:50 <codl> or, you should have a tiny hammerspace inventory
+18:09:01 <codl> and you can have idunno saddlebags
+18:09:12 <Vivex> yeah- saddlebags that increase the space?
+18:09:15 <codl> yeah
+18:09:27 <Vivex> but yeah hammerspacy, not that fun with loot if you can only carry one weapon and a flask
+
+18:21:10 <Scootaloo> Also.. enchanting?
+18:21:21 <Scootaloo> with both good and bad chances
+18:21:36 <Scootaloo> So it's a gamble but it still costs stuff
+18:21:54 <Scootaloo> enchanting found items
+18:22:00 <Scootaloo> and obviously finding as well I guess?
+18:22:01 <Scootaloo> rarely
+18:22:51 <Vivex> cause yeah we've seen various enchantments
+18:23:18 <codl> it would have to really cost a lot
+18:23:34 <Scootaloo> Yeah, it would cost a lot, and it's really a gamble because it can be good or bad
+18:24:22 <Vivex> I mean we've seen a feeew enchantments in the show, like sombra etc
+18:25:39 <Vivex> I can't remember any items themselves, but I think enchanting yourself should be reallyy hard-
+18:25:47 <Vivex> only seen it from the princesses, twilight, and sombra I thiiink?
+18:26:16 <Scootaloo> that's why it will cost
+18:26:22 <Scootaloo> it won't be easy to enchant
+
+18:23:48 <codl> when you find items they aren't identified
+18:24:07 <codl> just "iron sword"
+18:24:20 <codl> not "+1 iron sword or coolness also it recieves radio"
+
+18:52:39 <Vivex> but yeah I just kinda want to avoid unlockables in the main menu
+18:53:10 <Vivex> have it a bit more like- the old days like "Oh if you recognize this room, break a hole in that wall, and you might find this"
+
+LELE SCROLLS
+14:44:42 <codl> magic for the masses
+14:44:59 <codl> but yeah one-time use
+14:44:57 <Vivix> Well, we could certainly do that and use the time period and dark period as an excuse
+14:45:41 <codl> but… why wouldn't they still be in use today
+14:46:19 <Vivix> maybe they're a bit dangerous, and maybe considered a bit hostile?
+14:46:28 <Vivix> You know, something ponies had in the war, etc?
+14:47:02 <codl> so they just fell out of use
+14:47:12 <codl> because they're basically guns
+14:47:27 <codl> and no-one's comfortable with using them
+14:47:40 <Vivix> like the risk is too much
+14:47:45 <Vivix> and earth ponies seem a bit anti magic any way
+14:48:39 <Vivix> and yeah there's no scrolls in the Trixie intro, so we're on edge of canon, but I think our excuses and gemaply is good enouh excuse
+
+==General gameplay
+blabla turn based gameplay too much to quote
+16:21:30 <codl> they're just very short turns I guess
+16:21:53 <codl> some actions could take more than one turn tho
+16:22:54 <Vivex> and some spells will probably take more than turn
+
+16:27:23 <Scootaloo> random gen worlds
+16:27:32 <Vivex> yeah, rogue gen etc
+16:27:39 <Vivex> maybe a few non-random locations but in random positions?
+16:29:16 <codl> story-relevant nonrandom places
+
+16:30:10 <Vivex> and yeah, cool text descriptions would be nice
+16:30:15 <Vivex> look at's etc
+
+16:38:56 <codl> fatigue/mana
+16:39:02 <codl> is there a difference
+16:39:07 <Vivex> I'm not sure-
+16:39:18 <Vivex> I mean, we've seen twilight get physically tired from using a lot of magic-
+16:39:21 <Vivex> so they're at least related
+16:40:42 <codl> I think we might as well just make it fatigue
+16:40:45 <codl> simpler is better
+16:40:59 <Scootaloo> everyone gets fatigue
+
+16:42:59 <Vivex> have we ever seen swords and stuff?
+16:43:48 <Vivex> cause I guess unicorn wielded swords would be different-
+16:43:57 <Vivex> but I still kinda want earth ponie and pegasi to be able to use them
+
+16:43:46 <Scootaloo> also
+16:43:49 <Scootaloo> what classes?
+16:43:59 <Vivex> classes? Hm
+16:44:13 <Vivex> Class system would have to be related to breed type
+16:44:22 <codl> do we need classes?
+16:44:30 <Vivex> not sure, we could just do a classless system
+16:44:31 <Scootaloo> mhm that's a good one
+16:44:39 <Vivex> where you just kinda- increase the skills you use the most
+16:45:02 <Vivex> the breed type take care a lot of the standard classes
+16:46:53 <Vivex> a class system on top of that might just feel limiting, you know? They all just have the default skills
+16:47:02 <Vivex> like a multiclass/free system like many WRPGS
+
+17:50:50 <Vivex> oh and char creation, even if it isn't visible or useful, just you know- for fun
+17:51:05 <Vivex> like some text adventures have fakechoices, just to make you feel immersed
+17:51:50 <Scootaloo> well if we go graphs it would be visual i suppose
+17:52:00 <codl> lotsa choices
+17:52:05 <codl> dunno which ones matter
+17:52:15 <codl> so you start taking them all seriously
+17:52:58 <Vivex> like not so many choices you get stuck all day, but just enough to make you feel--like you are more like your char
+
+17:54:53 <Vivex> and yeah if graphics, the basic like- mane colour etc would be visible
+17:55:01 <Vivex> though then there would be a lot of armor stuff- but yeah worry about that later
+
+8:12:15 <Vivex> one thing I think would be fun to avoid is typical--constraints
+18:12:27 <Vivex> like, maybe able to carry a saddlebag in your muzzle, occupying it, etc
+18:12:45 <codl> but then it restricts what you can do
+18:12:51 <Vivex> hehe, yeah like- yeah it has drawbacks
+18:12:57 <Vivex> but if you found biitchin loot you just want to get out alive with
+18:13:03 <Vivex> it's possible, instead of impossible
+
+19:15:39 <Vivex> would there be any friendly npcs?
+19:15:44 <Vivex> diablo had some I think- for selling loot
+19:15:47 <codl> well sure, in towns                       
+19:15:57 <Vivex> yeah- but only towns?
+19:16:03 <codl> shopkeepers, enchanters, what have you
+19:16:21 <Vivex> maybe a creepy zebra in the forest who sells you potions if you've helped her once
+
+19:16:29 <codl> we could have quests where you have A PARTNER OMG
+19:16:46 <codl> or hire a goon
+19:16:53 <Vivex> FO1 COMPANION STYLE
+19:20:58 <codl> PETS!
+
+==Setting, story
+16:51:26 <Vivex> you thinking eh premodern ponyday? Like-
+16:51:33 <Vivex> before the show so to speak?
+16:52:11 <Vivex> but yeah it kinda needs a villain aand--
+16:52:16 <Vivex> a conflict
+16:52:21 <Vivex> not just LOOT
+16:52:40 <codl> preferably a conflict that would bring some variety
+16:52:49 <codl> not just lel changelings all game
+16:53:19 <Vivex> and changelings are more cavedwelling than dungeondwelling it seems (comics at least)
+16:53:29 <Vivex> evil unicorn might be too simple-
+16:54:15 <Vivex> Diablo had several bosses, right?
+16:54:41 <Vivex> then it could be like a cult or something
+16:54:48 <Vivex> variety in races and types of enemies
+16:54:53 <codl> lots of tiny quests that fit into the main quest
+16:56:05 <Vivex> that sounds like it could add some story depth too, not ONE evil guy, you know?
+16:56:12 <Vivex> agendas etc
+16:56:26 <Scootaloo> because ONE EVIL OVERLORD is clichee
+16:56:38 <codl> you could be done with one group and "BUT WAIT THERE'S MORE"
+16:56:53 <codl> and suddenly you realize that this is muuuch bigger than you thought
+
+16:59:04 <Vivex> but yeah how are you thinking the maps with that kind of idea?
+16:59:15 <Vivex> like nethack all underground or- like diabloe mostly underground but some not?
+17:00:13 <codl> I was thinking something more like ADOM
+17:00:19 <codl> one huuuge outside map
+17:00:35 <codl> and dungeons and caves and towns and what have you
+
+17:02:14 <Vivex> but yeah then we can have it pre-show ages, maybe not super long ago, but- can't meat the mane six etc
+17:02:15 <Vivex> meet*
+17:03:00 <Vivex> maaybe..maybe a few hundred years after Luna's exile, whilst Celestia had a loose grip of the world
+17:03:08 <Vivex> not discord crazy, but still tumultous
+
+17:35:00 <Vivex> even small short descriptions every now and again make it feel bigger
+
+18:37:52 <Vivex> well we could look at the maps from walmart and the maps from the comic and try to like see any cool places?
+
+
