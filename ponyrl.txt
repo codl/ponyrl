@@ -4,7 +4,9 @@
 Technical
 - C
 - Multiplatform
-- Console based | termbox 256clr | steal console part of Putty for wndws
+- Console based | strong independent roguelike who don't need no ncurses
+  - http://man.cx/ioctl(2) http://man.cx/tty(4) particularily ioctl(0, TIOCGWINSZ, &sz)
+  - https://en.wikipedia.org/wiki/SIGWINCH#SIGWINCH
 
 Overarching themes
 - Replayability.
@@ -54,6 +56,7 @@ Story / Setting
 
 References and links
 http://roguebasin.roguelikedevelopment.org/index.php?title=Articles wow shit lots of roguelike doc
+
 
 IDEA SPAM BELOW
 ==Technical things
