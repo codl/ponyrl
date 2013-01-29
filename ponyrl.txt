@@ -4,9 +4,13 @@
 Technical
 - C
 - Multiplatform
-- Console based | strong independent roguelike who don't need no ncurses
+- Console based | I'm a strong independent roguelike who don't need no ncurses
+  - WE CAN'T assume 256 colours! :(:(:(:(:(:(:(:(:(:(:(:(:(:(:(
+    - fuck this we do what we want, 16c, 88c, 256c and tiles versions
+  - https://en.wikipedia.org/wiki/ANSI_code
   - http://man.cx/ioctl(2) http://man.cx/tty(4) particularily ioctl(0, TIOCGWINSZ, &sz)
-  - https://en.wikipedia.org/wiki/SIGWINCH#SIGWINCH
+  - https://en.wikipedia.org/wiki/SIGWINCH
+  - multiple front ends for portability and sexyness.
 
 Overarching themes
 - Replayability.
@@ -27,7 +31,7 @@ Items
 - Awesome random gennerated item drops.
 - Inventory / Hammerspace / Sadlebags
 - Random Enchanting both can be good or bad / Expencive
-- Identifing items mechanic.
+- Identifing items mechanic. No (or few) identification scrolls, players should instead rely on topical books : specific, much less convenient to carry, but infinite uses, and you can probably find a few in towns.
 
 Gameplay
 - On armoured enemies you can get stuck, If you have spiked horseshoes that are nailed to your hoof, and suffer a critical miss
@@ -36,29 +40,37 @@ Gameplay
 - No classes, just races, like a multiclass/free system
 - Opening your inv makes you unable to do anything else
 - Friendly NPC's / shops and such
-- NPC Companions FO Style, can level on some form, to combat abandoning of companions. Avoid OP!
+- NPC Companions FO Style. Can level on some form, to combat abandoning of companions. Avoid OP!
 - RAD text descriptions 
 - Char creation should be very basic, gender name tribe/breed, fast from start to play as we can. Also random name generator.
+- Dialog should not interfere with gameplay. NPCs say things into the log, and you get a reminder to press a key to reply. You can ignore them if you like.
+- Map : Big fat map of doom? (Cataclysm style… well, many-modern-games style) Smaller connected maps? (FO style) Former makes the player feel more free, latter is much easier to achieve and allows for convenient fast-travel mechanics. Not sure if we want those though.
+  - Tile elevation? Would make for some fun line-of-sight hyjinks. We can use all them colours to make it look good. How do we handle overlapping?
 
 Story / Setting
 - Story based
 - Not just one bad guy
 - 1-200 years after exile of Luna
 - Cultists of some sort as the evil force.
-- Location is offmap from both comic and walmart. making the map very randomized and replayable.
+- Location is offmap from both comic and walmart, making the map very randomized and replayable.
 - parts of the story can be switched around based on randomizing and to a lesser extent choice (Or indeed, skipped completely?)
 - "like, you're supposed to go to town X to do whatever but instead you wander around and just trip on the next part of the story" -codl 2013 represent yo
 - Celestia is withdrawn, still in control, but slowly becoming a faceless ruler.
 - The cultists feel threatened by this and try to establish their own ruling over the land, a supposed democracy among the top leaders of the cult ultimately following one entity within the cult. A faux democracy. 
 - Ponies forget, as generations pass with Celestias reclusiveness, ponies become less happy, and the cultists more powerful, more aggressive. ??? moar
+
 - Why, how: Player:
 - Player comes to the town, seeking out adventure/justice/???
+
 
 References and links
 http://roguebasin.roguelikedevelopment.org/index.php?title=Articles wow shit lots of roguelike doc
 
 
+
+
 IDEA SPAM BELOW
+
 ==Technical things
 blabla we said C or C++ can't be bothered to scroll up and copypaste
 16:07:24 <Scootaloo> also it should be
@@ -280,5 +292,4 @@ blabla turn based gameplay too much to quote
 17:35:00 <Vivex> even small short descriptions every now and again make it feel bigger
 
 18:37:52 <Vivex> well we could look at the maps from walmart and the maps from the comic and try to like see any cool places?
-
 
