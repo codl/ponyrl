@@ -6,6 +6,7 @@ Technical
 - Multiplatform
 - 16c, 88c, 256c console, top-down tiles
   - Let's focus on 256c for now
+  - We can probably assume unicode though, at this point
   - https://en.wikipedia.org/wiki/ANSI_code
   - http://man.cx/ioctl(2) http://man.cx/tty(4) particularily ioctl(0, TIOCGWINSZ, &sz)
   - https://en.wikipedia.org/wiki/SIGWINCH
@@ -48,6 +49,28 @@ Gameplay
 - Map : Big fat map of doom? (Cataclysm style… well, many-modern-games style) Smaller connected maps? (FO style) Former makes the player feel more free, latter is much easier to achieve and allows for convenient fast-travel mechanics. Not sure if we want those though.
 - Tile elevation? Would make for some fun line-of-sight hyjinks. We can use all them colours to make it look good. How do we handle overlapping?
 - Possible overlapping can be handled by "blend" zones and smooth transitioning between "slices" of map. For big overlaps?
+
+⚠ map format brain dump below ⚠ warning: confusing and confused
+If we have a huge map, we're going to need to split it into smaller (say, 256x256) tiles and either:
+  1) store all of them in the savefile, lots of shit to save
+  2) make our map generator deterministic so we can regenerate it whenever reentering a tile
+making it deterministic /and/ believable is not easy, each tile should ideally depend on tiles around it
+we can generate some half-believable terrain with a few passes of perlin noise, but then we need to place map features
+To make rivers and lakes and other bodies of water, we can throw water on the whole map, make it roll downhill and erode terrain (lower elevation a bit for every square where it passed, neighbouring squares as well maybe, dump it all where it stopped), leave water where it is, after a few (hundred) passes, we'll have some nice lakes and river channels… empty river channels. Maybe keep track of where the most water passed and just put perma-flowy water there?
+The main problem with this ^ is that we can't run it everytime we load a tile. It is much too slow. We can:
+  1) Do it once when starting the game and store it all, but that's not very elegant, or
+  2) Make a low res map when starting the game, taking note of which tiles have cities, caves, streams passing through them and in which direction, etc. Store that, and generate the tile deterministically taking that into account. Sounds a bit iffy to do well.
+Once we have water, we can start placing towns close to water and other profitable venues (mines? forests? fertile soil?? more stuff we need to place), and linking them with a network of roads.
+Another thing to consider is changes to the map, how do we store them? If you blow up a wall, leave, come back and the wall is there again, it kind of ruins the realism. Even tiny things like "what is inside this closet" should be considered. We could save an overlay of changed spaces, it would be much less costly than SAVING EVERYTHING.
+Back to overlapping, if we want a cave in a cliff, we're going to need squares for the inside of the cave, and squares for the ground at the top of the cliff. Since everything is connected and in the same array, those squares would have the same coordinates. We need to cut the world into horizontal slices ~2m high. This way we can have caves with normal ground over them, twisty 3D mazes, or even look out from atop a tower and see much farther. Also flight for flight-enabled races would make some sort of sense. However, this implies heavier memory usage, since we have to keep the tiles above and below us in memory as well— a volume instead of an area. We have to be extra careful not to load useless tiles.
+
+
+MAP GLOSSARY because I'm getting confused by my very own vocabulary
+- Slice: Huge array of tiles, all around the same elevation.
+- Tile: 256x256 array of squares. Seamlessly link with neighbouring tiles, they shouldn't be obvious to the player. Only a few of these should be loaded in memory during normal gameplay.
+- Square: one character on the screen, can contain (one creature and items on the floor) or one entity, has a terrain type and, if applicable, an elevation value.
+- Terrain type: determines what a square does and looks like. has attributes (passable, hurts...), a character or a range of characters, and a single colour and a range of background colours for shading and variety. e.g. grass, rock, rock wall...
+- Entity: nonliving, immutable thing that you can interact with in a variety of ways. They have a character and a colour. The background colour of the underlying terrain type should be visible. e.g. doors, windows, store shelves...
 
 Story / Setting
 - Story based
