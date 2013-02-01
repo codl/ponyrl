@@ -64,6 +64,9 @@ Once we have water, we can start placing towns close to water and other profitab
 Another thing to consider is changes to the map, how do we store them? If you blow up a wall, leave, come back and the wall is there again, it kind of ruins the realism. Even tiny things like "what is inside this closet" should be considered. We could save an overlay of changed spaces, it would be much less costly than SAVING EVERYTHING.
 Back to overlapping, if we want a cave in a cliff, we're going to need squares for the inside of the cave, and squares for the ground at the top of the cliff. Since everything is connected and in the same array, those squares would have the same coordinates. We need to cut the world into horizontal slices ~2m high. This way we can have caves with normal ground over them, twisty 3D mazes, or even look out from atop a tower and see much farther. Also flight for flight-enabled races would make some sort of sense. However, this implies heavier memory usage, since we have to keep the tiles above and below us in memory as well— a volume instead of an area. We have to be extra careful not to load useless tiles.
 
+Elevation on squares is 0-8, added to the slice's height.
+I imagine a slice to be about 2.5m high.
+
 
 MAP GLOSSARY because I'm getting confused by my very own vocabulary
 - Slice: Huge array of tiles, all around the same elevation.
