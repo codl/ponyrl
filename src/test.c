@@ -4,6 +4,8 @@
 #include <time.h>
 #include <math.h>
 #include "screen.h"
+#include "map.h"
+#include "terrain.h"
 
 void signalCatch(int sig){
     screen_free();
@@ -13,8 +15,9 @@ void signalCatch(int sig){
 int main(int argc, char* argv){
     char input;
     int x=1, y=1;
+    int xx, yy, xxx, yyy;
     int width, height;
-    int turn = 0;
+    struct tile my_super_fancy_tile;
     struct sigaction sa;
     sa.sa_handler = &signalCatch;
     sa.sa_flags = 0;
@@ -31,13 +34,44 @@ int main(int argc, char* argv){
     set_cursor(x, y);
     putchar('@');
 
+    my_super_fancy_tile.type = Full;
+    my_super_fancy_tile.tile.sq = malloc(sizeof(struct square) * TILESIZE * TILESIZE); // this will be done by the map generator / loader
+    if(my_super_fancy_tile.tile.sq == NULL){
+        perror(NULL);
+        screen_free();
+        exit(1);
+    }
+    fill_tile(my_super_fancy_tile.tile.sq, TERRAIN_GRASS);
+    xx = rand() % TILESIZE-4 + 2;
+    yy = rand() % TILESIZE-4 + 2;
+    for(yyy = yy - 2; yyy <= yy + 2; yyy++){
+        for(xxx = xx - 2; xxx <= xx + 2; xxx++){
+            square(my_super_fancy_tile.tile.sq, xxx, yyy)->terrain = TERRAIN_WATER;
+        }
+    }
+
+    xx = rand() % TILESIZE-6 + 2;
+    yy = rand() % TILESIZE-6 + 2;
+    for(yyy = yy - 3; yyy <= yy + 2; yyy++){
+        square(my_super_fancy_tile.tile.sq, xx-3, yyy)->terrain = TERRAIN_ROCK_WALL;
+        square(my_super_fancy_tile.tile.sq, xx+2, yyy)->terrain = TERRAIN_ROCK_WALL;
+    }
+    for(xxx = xx - 3; xxx <= xx + 2; xxx++){
+        square(my_super_fancy_tile.tile.sq, xxx, yy-3)->terrain = TERRAIN_ROCK_WALL;
+        square(my_super_fancy_tile.tile.sq, xxx, yy+2)->terrain = TERRAIN_ROCK_WALL;
+    }
+
+    draw_tile(&my_super_fancy_tile, 1, 1);
+
+
+
 
     while((input = getchar()) != EOF){
         get_screen_size(&width, &height);
+        set_color(grey((int)sqrt(pow(x/2, 2)+pow(y, 2)) % 26));
+        set_background(rgb(x%6, y%6, (x/6)%6));
         set_cursor(x, y);
-        //putchar('.');
-        if(x < width - 5)
-            printf("HI :3");
+        putchar('%');
         switch(input){
             case 'h':
                 x--;
@@ -73,11 +107,11 @@ int main(int argc, char* argv){
         else if(y < 1){ y = 1; }
         if(rand() % 10000 == 0){
             set_cursor(1,1);
-            set_color(color(5,5,5));
-            set_background(color(0,0,0));
+            set_color(grey(25));
+            set_background(grey(0));
             switch(rand() % 3){
                 case 0:
-                    puts("You hear the voice of Lucky: \"Hello!\"");
+                    puts("You hear the voice of Lucky. \"Hello, adventurer!\"");
                     break;
                 case 1:
                     puts("You hear flapping dog wings.");
@@ -88,9 +122,8 @@ int main(int argc, char* argv){
             }
         }
         set_cursor(x, y);
-        set_background(grey((int)sqrt(pow(x/2, 2)+pow(y, 2)) % 26));
-        set_color(color(x%6, y%6, (x/6)%6));
+        set_background(grey(0));
+        set_color(grey(20));
         putchar('@');
-        turn++;
     }
 }
