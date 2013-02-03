@@ -5,14 +5,20 @@
 int screen_width, screen_height;
 int color, background;
 
-void screenInit();
-void screenFree();
-void getScreenSize(int* width, int* height);
-void set_cursor(int x, int y);
+void screen_init(void);
+void get_screen_size(int* w, int* h);
+void set_term_opts(int buffer, int echo, int visible);
+void screen_free(void);
 
-int rgb(int r, int g, int b);
-int gret(int b);
-void set_color(int c);
-void set_background(int c);
-void draw_tile(struct tile*, int x, int y);
+void clear_screen(void);
+void set_cursor(const int x, const int y);
+
+int rgb(const int r, const int g, const int b);
+int grey(const int b);
+void set_color(const int c);
+void set_background(const int c);
+void draw_tile(struct tile*, const int x, const int y);
+
+void redraw(void);
+void resizeCatch(const int sig);
 #endif

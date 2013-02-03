@@ -8,19 +8,19 @@
 #define square(sq,x,y) ((sq) + (y) * TILESIZE + (x))
 
 struct square{
-    unsigned int terrain : 2;
-    unsigned int elevation : 3;
+    unsigned int terrain :2;
+    unsigned int elevation :3;
     // something like itemlist* i; creature* c; entity* e;
 };
 
 struct tile{
     enum { Full, Empty } type;
     union{
-        int terrain;
+        unsigned int terrain :2;
         struct square* sq;
     } tile;
 };
 
-void fill_tile(struct square* sq, int terrain);
+void fill_tile(struct square* sq, unsigned int terrain);
 
 #endif

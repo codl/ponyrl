@@ -6,20 +6,23 @@
 #include "screen.h"
 #include "map.h"
 #include "terrain.h"
+#include "test.h"
 
-void signalCatch(int sig){
-    screen_free();
-    exit(0);
+void signalCatch(int s){
+    if(s){
+        screen_free();
+        exit(0);
+    }
 }
 
-int main(int argc, char* argv){
-    char input;
-    int x=1, y=1;
+int main(void){
+    int input;
+    int x, y;
     int xx, yy, xxx, yyy;
     int width, height;
     struct tile my_super_fancy_tile;
     struct sigaction sa;
-    sa.sa_handler = &signalCatch;
+    sa.sa_handler =  &signalCatch;
     sa.sa_flags = 0;
     sigaction(SIGINT, &sa, NULL);
     sigaction(SIGQUIT, &sa, NULL);
@@ -28,7 +31,7 @@ int main(int argc, char* argv){
 
     get_screen_size(&width, &height);
 
-    srand(time(NULL));
+    srand((unsigned int)time(NULL));
     x = rand() % width + 1;
     y = rand() % height + 1;
     set_cursor(x, y);
@@ -66,7 +69,8 @@ int main(int argc, char* argv){
 
 
 
-    while((input = getchar()) != EOF){
+    while(1){
+        input = getchar();
         get_screen_size(&width, &height);
         set_color(grey((int)sqrt(pow(x/2, 2)+pow(y, 2)) % 26));
         set_background(rgb(x%6, y%6, (x/6)%6));

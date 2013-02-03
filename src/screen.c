@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <stdio.h>
 #include <sys/ioctl.h>
 #include <termios.h>
@@ -13,11 +14,11 @@ void get_screen_size(int* w, int* h){
     screen_height = ws.ws_row;
 }
 
-void clear_screen(){
+void clear_screen(void){
     puts("\033[2J");
 }
 
-void set_cursor(int x, int y){
+void set_cursor(const int x, const int y){
     printf("\033[%d;%dH", y, x);
 }
 
@@ -27,14 +28,14 @@ void set_term_opts(int buffer, int echo, int visible){
     if(buffer){
         t.c_lflag |= ICANON;
     } else {
-        t.c_lflag &= ~ICANON;
+        t.c_lflag &= (unsigned) ~ICANON;
         t.c_cc[VMIN] = 1;
         t.c_cc[VTIME] = 0;
     }
     if(echo){
         t.c_lflag |= ECHO;
     } else {
-        t.c_lflag &= ~ECHO;
+        t.c_lflag &= (unsigned) ~ECHO;
     }
     if(visible){
         puts("\033[?25h");
@@ -44,16 +45,18 @@ void set_term_opts(int buffer, int echo, int visible){
     tcsetattr(0, TCSANOW, &t);
 }
 
-void redraw(){
+void redraw(void){
     //NOOP
 }
 
-void resizeCatch(int sig){
-    get_screen_size(0,0);
-    redraw();
+void resizeCatch(const int sig){
+    if(sig == SIGWINCH){
+        get_screen_size(0,0);
+        redraw();
+    }
 }
 
-void screen_init(){
+void screen_init(void){
     set_term_opts(0, 0, 0);
     clear_screen();
     color = 0;
@@ -64,37 +67,37 @@ void screen_init(){
     sigaction(SIGWINCH, &sa, NULL);
 }
 
-void screen_free(){
+void screen_free(void){
     set_term_opts(1, 1, 1);
     set_cursor(1, screen_height);
     puts("\033[0m");
 }
 
-int rgb(int r, int g, int b){
+int rgb(const int r, const int g, const int b){
     return 16 + 36*r + 6*g + b;
 }
 
-int grey(int b){
+int grey(const int b){
     if(b==0) return 16;
     if(b==25) return 231;
     return 232 + b - 1;
 }
 
-void set_color(int c){
+void set_color(const int c){
     if(color != c){
         printf("\033[38;5;%dm", c);
         color = c;
     }
 }
 
-void set_background(int c){
+void set_background(const int c){
     if(background != c){
         printf("\033[48;5;%dm", c);
         background = c;
     }
 }
 
-void draw_tile(struct tile* t, int x, int y){
+void draw_tile(struct tile* t, const int x, const int y){
     if(t->type == Empty)
         return;
     int xx, yy;
