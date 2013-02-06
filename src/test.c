@@ -7,6 +7,7 @@
 #include "map.h"
 #include "terrain.h"
 #include "test.h"
+#include "player.h"
 
 void signalCatch(int s){
     if(s){
@@ -17,10 +18,7 @@ void signalCatch(int s){
 
 int main(void){
     int input;
-    int x, y;
-    int xx, yy, xxx, yyy;
     int width, height;
-    struct tile my_super_fancy_tile;
     struct sigaction sa;
     sa.sa_handler =  &signalCatch;
     sa.sa_flags = 0;
@@ -32,100 +30,48 @@ int main(void){
     get_screen_size(&width, &height);
 
     srand((unsigned int)time(NULL));
-    x = rand() % width + 1;
-    y = rand() % height + 1;
-    set_cursor(x, y);
-    putchar('@');
+    init_map();
 
-    my_super_fancy_tile.type = Full;
-    my_super_fancy_tile.tile.sq = malloc(sizeof(struct square) * TILESIZE * TILESIZE); // this will be done by the map generator / loader
-    if(my_super_fancy_tile.tile.sq == NULL){
-        perror(NULL);
-        screen_free();
-        exit(1);
-    }
-    fill_tile(my_super_fancy_tile.tile.sq, TERRAIN_GRASS);
-    xx = rand() % TILESIZE-4 + 2;
-    yy = rand() % TILESIZE-4 + 2;
-    for(yyy = yy - 2; yyy <= yy + 2; yyy++){
-        for(xxx = xx - 2; xxx <= xx + 2; xxx++){
-            square(my_super_fancy_tile.tile.sq, xxx, yyy)->terrain = TERRAIN_WATER;
-        }
-    }
+    player.x = 1;
+    player.y = 1;
+    player.ele = 1;
 
-    xx = rand() % TILESIZE-6 + 2;
-    yy = rand() % TILESIZE-6 + 2;
-    for(yyy = yy - 3; yyy <= yy + 2; yyy++){
-        square(my_super_fancy_tile.tile.sq, xx-3, yyy)->terrain = TERRAIN_ROCK_WALL;
-        square(my_super_fancy_tile.tile.sq, xx+2, yyy)->terrain = TERRAIN_ROCK_WALL;
-    }
-    for(xxx = xx - 3; xxx <= xx + 2; xxx++){
-        square(my_super_fancy_tile.tile.sq, xxx, yy-3)->terrain = TERRAIN_ROCK_WALL;
-        square(my_super_fancy_tile.tile.sq, xxx, yy+2)->terrain = TERRAIN_ROCK_WALL;
-    }
-
-    draw_tile(&my_super_fancy_tile, 1, 1);
-
+    draw_map(1,1,0);
 
 
 
     while(1){
         input = getchar();
-        get_screen_size(&width, &height);
-        set_color(grey((int)sqrt(pow(x/2, 2)+pow(y, 2)) % 26));
-        set_background(rgb(x%6, y%6, (x/6)%6));
-        set_cursor(x, y);
-        putchar('%');
         switch(input){
             case 'h':
-                x--;
+                move_player(W);
                 break;
             case 'j':
-                y++;
+                move_player(S);
                 break;
             case 'k':
-                y--;
+                move_player(N);
                 break;
             case 'l':
-                x++;
+                move_player(E);
                 break;
             case 'y':
-                x--; y--;
+                move_player(NW);
                 break;
             case 'u':
-                x++; y--;
+                move_player(NE);
                 break;
             case 'n':
-                x++; y++;
+                move_player(SE);
                 break;
             case 'b':
-                x--; y++;
+                move_player(SW);
                 break;
             case 'q':
                 screen_free();
                 return 0;
         }
-        if(x > width){ x = width; }
-        else if(x < 1){ x = 1; }
-        if(y > height){ y = height; }
-        else if(y < 1){ y = 1; }
-        if(rand() % 10000 == 0){
-            set_cursor(1,1);
-            set_color(grey(25));
-            set_background(grey(0));
-            switch(rand() % 3){
-                case 0:
-                    puts("You hear the voice of Lucky. \"Hello, adventurer!\"");
-                    break;
-                case 1:
-                    puts("You hear flapping dog wings.");
-                    break;
-                case 2:
-                    puts("You feel the comforting gaze of Lucky upon you.");
-                    break;
-            }
-        }
-        set_cursor(x, y);
+        set_cursor(screen_width/2, screen_height/2);
         set_background(grey(0));
         set_color(grey(20));
         putchar('@');

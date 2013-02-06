@@ -59,6 +59,7 @@ void resizeCatch(const int sig){
 void screen_init(void){
     set_term_opts(0, 0, 0);
     clear_screen();
+    get_screen_size(NULL, NULL);
     color = 0;
     background = 1;
     struct sigaction sa;
@@ -97,9 +98,23 @@ void set_background(const int c){
     }
 }
 
+void draw_map(const int centerx, const int centery, const int ele){
+    int x, y;
+    x = (centerx - screen_width/2)/TILESIZE*TILESIZE;
+    if(x <= 0) x -= TILESIZE;
+    for(; x < centerx + screen_width/2 + TILESIZE; x+=TILESIZE){
+        y = (centery - screen_height/2)/TILESIZE*TILESIZE;
+        if(y <= 0) y -= TILESIZE;
+        for(; y < centery + screen_height/2 + TILESIZE; y+=TILESIZE){
+            draw_tile(get_tile(x/TILESIZE, y/TILESIZE, 0), x - centerx + screen_width/2, y - centery + screen_height/2);
+        }
+    }
+}
+
 void draw_tile(struct tile* t, const int x, const int y){
-    if(t->type == Empty)
+    if(t->type == Fill)
         return;
+        //TODO
     int xx, yy;
     get_screen_size(0, 0);
     for(yy = 0; yy < TILESIZE; yy++){
@@ -109,25 +124,40 @@ void draw_tile(struct tile* t, const int x, const int y){
                     y + yy < 1 || y + yy > screen_height){
                 continue;
             }
-            switch(square(t->tile.sq, xx, yy)->terrain){
-                case TERRAIN_WATER:
-                    set_background(rgb(0,2,5));
-                    putchar(' ');
-                    break;
-                case TERRAIN_GRASS:
-                    set_background(grey(0));
-                    if(rand() % 15 == 0){
-                        set_color(rgb(0,rand()%5+1,0));
-                        putchar(",."[rand()%2]);
-                    }
-                    else
-                        putchar(' ');
-                    break;
-                case TERRAIN_ROCK_WALL:
-                    set_background(grey(15));
-                    putchar(' ');
-                    break;
-            }
+            draw_square(SQUARE(t->tile.sq, xx, yy), x + xx, y + yy);
         }
+    }
+}
+
+void draw_square(struct square* sq, const int x, const int y){
+    srand(map.seed + (sq->x ^ (sq->y * TILESIZE)));
+    set_cursor(x, y);
+    switch(sq->terrain){
+        case TERRAIN_WATER:
+            set_background(rgb(0,2,5));
+            putchar(' ');
+            break;
+        case TERRAIN_GRASS:
+            set_background(grey(0));
+            if(rand() % 15 == 0){
+                set_color(rgb(0,rand()%5+1,0));
+                putchar(",."[rand()%2]);
+            }
+            else
+                putchar(' ');
+            break;
+        case TERRAIN_ROCK:
+            set_background(grey(0));
+            if(rand() % 4 == 0){
+                set_color(grey(rand()%10 + 5));
+                putchar(",."[rand()%2]);
+            }
+            else
+                putchar(' ');
+            break;
+        case TERRAIN_ROCK_WALL:
+            set_background(grey(15));
+            putchar(' ');
+            break;
     }
 }

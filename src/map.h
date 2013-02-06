@@ -4,23 +4,45 @@
 #include "terrain.h"
 
 #define TILESIZE 64
+#define TERRAINSIZE 2 // 0-3
+#define ELESIZE 3 // 0-7
 
-#define square(sq,x,y) ((sq) + (y) * TILESIZE + (x))
+#define SQUARE(sq,x,y) ((sq) + (y) * TILESIZE + (x))
+
+enum direction{ N, NE, E, SE, S, SW, W, NW };
 
 struct square{
-    unsigned int terrain :2;
-    unsigned int elevation :3;
+    unsigned int terrain :TERRAINSIZE;
+    unsigned int elevation :ELESIZE;
+    int x, y;
     // something like itemlist* i; creature* c; entity* e;
 };
 
 struct tile{
-    enum { Full, Empty } type;
+    enum { Array, Fill } type;
+    int x, y, ele;
     union{
-        unsigned int terrain :2;
+        struct square* fill;
         struct square* sq;
     } tile;
 };
 
+struct tilelist{
+    struct tile* tile;
+    struct tilelist* next;
+};
+
+struct map{
+    int seed;
+    struct tilelist* tiles;
+};
+
+struct map map;
+
+void init_map(void);
+
+struct tile* get_tile(int x, int y, int ele);
+struct tile* gen_tile(int x, int y, int ele);
 void fill_tile(struct square* sq, unsigned int terrain);
 
 #endif

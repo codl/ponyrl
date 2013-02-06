@@ -17,7 +17,9 @@ int rgb(const int r, const int g, const int b);
 int grey(const int b);
 void set_color(const int c);
 void set_background(const int c);
+void draw_map(const int centerx, const int centery, const int ele);
 void draw_tile(struct tile*, const int x, const int y);
+void draw_square(struct square* sq, const int x, const int y);
 
 void redraw(void);
 void resizeCatch(const int sig);
