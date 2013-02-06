@@ -56,8 +56,8 @@ struct tile* gen_tile(int x, int y, int ele){
     SQUARE(tile->tile.sq, 15, 13)->terrain = TERRAIN_ROCK_WALL;
     SQUARE(tile->tile.sq, 14, 13)->terrain = TERRAIN_ROCK_WALL;
     SQUARE(tile->tile.sq, 13, 13)->terrain = TERRAIN_ROCK_WALL;
-    SQUARE(tile->tile.sq, 12, 13)->terrain = TERRAIN_ROCK_WALL;
     // door lel
+    SQUARE(tile->tile.sq, 11, 13)->terrain = TERRAIN_ROCK_WALL;
     SQUARE(tile->tile.sq, 10, 13)->terrain = TERRAIN_ROCK_WALL;
     SQUARE(tile->tile.sq, 10, 12)->terrain = TERRAIN_ROCK_WALL;
     SQUARE(tile->tile.sq, 10, 11)->terrain = TERRAIN_ROCK_WALL;
