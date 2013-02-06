@@ -1,0 +1,21 @@
+WEAPON
+
+Name:
+Identified by:
+Description:
+
+
+Type: [melee|ranged]
+
+Damage roll: ndn
+
+Damage type: [Some weapons might have different behaviour.]
+
+Critical misses:
+[Description : Effect]
+
+Critical hits + effect:
+[Description : Effect]
+
+Notes:
+

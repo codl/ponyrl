@@ -1,0 +1,22 @@
+WEAPON
+
+Name: Hoof spikes
+Identified by: b_example
+Description:
+Some mean looking horse-shoes with thick spikes pointing outwards.
+
+Type: melee
+
+Damage roll: 1d5
+
+Damage type: Piercing. 
+
+Critical misses:
+The hoof spike gets stuck in your enemy! You struggle to rip it out. : Can't move for 1 turn.
+You stumble onto your muzzle as you miss your target. : 1d3 dmg to self.
+
+Critical hits + effect:
+Your hoof spike smashes into the %enemy%'s eye. It looks painful. : 2d5 dmg. Enemy can't move for 1 turn. Blind enemy.
+
+Notes:
+
