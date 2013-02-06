@@ -106,7 +106,7 @@ void draw_map(const int centerx, const int centery, const int ele){
         y = (centery - screen_height/2)/TILESIZE*TILESIZE;
         if(y <= 0) y -= TILESIZE;
         for(; y < centery + screen_height/2 + TILESIZE; y+=TILESIZE){
-            draw_tile(get_tile(x/TILESIZE, y/TILESIZE, 0), x - centerx + screen_width/2, y - centery + screen_height/2);
+            draw_tile(get_tile(x/TILESIZE, y/TILESIZE, ele), x - centerx + screen_width/2, y - centery + screen_height/2);
         }
     }
 }
@@ -130,7 +130,7 @@ void draw_tile(struct tile* t, const int x, const int y){
 }
 
 void draw_square(struct square* sq, const int x, const int y){
-    srand(map.seed + (sq->x ^ (sq->y * TILESIZE)));
+    srand((unsigned int) (map.seed + (sq->x ^ (sq->y * TILESIZE))));
     set_cursor(x, y);
     switch(sq->terrain){
         case TERRAIN_WATER:

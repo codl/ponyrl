@@ -68,5 +68,31 @@ struct tile* gen_tile(int x, int y, int ele){
     list->tile = tile;
     list->next = map.tiles;
     map.tiles = list;
+    gc_map();
     return tile;
+}
+
+void free_tile(struct tile* t){
+    if(t->type == Array){
+        free(t->tile.sq);
+    }
+    free(t);
+}
+
+void gc_map(void){
+    int counter = 0;
+    struct tilelist* list = map.tiles;
+    struct tilelist* next;
+    while(list){
+        counter++;
+        next = list->next;
+        if(counter == 100){
+            list->next = NULL;
+        }
+        else if (counter > 100) {
+            free_tile(list->tile);
+            free(list);
+        }
+        list = next;
+    }
 }

@@ -38,8 +38,6 @@ int main(void){
 
     draw_map(1,1,0);
 
-
-
     while(1){
         input = getchar();
         switch(input){

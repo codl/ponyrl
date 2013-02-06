@@ -13,8 +13,8 @@ void screen_free(void);
 void clear_screen(void);
 void set_cursor(const int x, const int y);
 
-int rgb(const int r, const int g, const int b);
-int grey(const int b);
+int rgb(const int r, const int g, const int b); /* 0-6 */
+int grey(const int b); /* 0-25 */
 void set_color(const int c);
 void set_background(const int c);
 void draw_map(const int centerx, const int centery, const int ele);

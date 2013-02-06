@@ -14,7 +14,7 @@ enum direction{ N, NE, E, SE, S, SW, W, NW };
 struct square{
     unsigned int terrain :TERRAINSIZE;
     unsigned int elevation :ELESIZE;
-    int x, y;
+    long x, y;
     // something like itemlist* i; creature* c; entity* e;
 };
 
@@ -44,5 +44,9 @@ void init_map(void);
 struct tile* get_tile(int x, int y, int ele);
 struct tile* gen_tile(int x, int y, int ele);
 void fill_tile(struct square* sq, unsigned int terrain);
+
+void free_tile(struct tile* t);
+
+void gc_map(void);
 
 #endif
