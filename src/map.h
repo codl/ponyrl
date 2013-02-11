@@ -2,6 +2,8 @@
 #define MAP_H
 
 #include "terrain.h"
+#include "item.h"
+#include "creature.h"
 
 #define TILESIZE 64
 #define TERRAINSIZE 2 // 0-3
@@ -15,7 +17,9 @@ struct square{
     unsigned int terrain :TERRAINSIZE;
     unsigned int elevation :ELESIZE;
     long x, y;
-    // something like itemlist* i; creature* c; entity* e;
+    struct itemlist* i;
+    struct creature* c;
+    /*entity* e;*/
 };
 
 struct tile{

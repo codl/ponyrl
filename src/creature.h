@@ -1,0 +1,19 @@
+#ifndef CREATURE_H
+#define CREATURE_H
+
+#define CREA_EARTH_PONY 0
+#define CREA_UNICORN 1
+#define CREA_PEGASUS 2
+#define CREA_LENGTH 2 // 0-3
+
+struct creature{
+    unsigned int type :CREA_LENGTH;
+    int health;
+    int dex; // str, con, lck... ?
+    int x, y, ele;
+    struct itemlist* inv;
+    // ??? equipped;   maybe another itemlist that is a subset of inv?
+    // int turn_counter;
+};
+
+#endif

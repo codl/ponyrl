@@ -34,7 +34,12 @@ int main(void){
 
     player.x = 1;
     player.y = 1;
-    player.ele = 1;
+    player.ele = 0;
+    player.type = CREA_EARTH_PONY;
+    player.inv = 0;
+    player.health = 1;
+
+    SQUARE(get_tile(0,0,0)->tile.sq, 1,1)->c = &player;
 
     draw_map(1,1,0);
 
@@ -69,9 +74,5 @@ int main(void){
                 screen_free();
                 return 0;
         }
-        set_cursor(screen_width/2, screen_height/2);
-        set_background(grey(0));
-        set_color(grey(20));
-        putchar('@');
     }
 }

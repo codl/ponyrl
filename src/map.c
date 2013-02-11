@@ -7,6 +7,8 @@ void fill_tile(struct square* sq, unsigned int terrain){
         for(y = 0; y < TILESIZE; y++){
             SQUARE(sq, x, y)->terrain = terrain & 3;
             SQUARE(sq, x, y)->elevation = 0;
+            SQUARE(sq, x, y)->c = 0;
+            SQUARE(sq, x, y)->i = 0;
         }
 }
 

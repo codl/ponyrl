@@ -1,11 +1,11 @@
 #include "damage.h"
 #include "roll.h"
 #include "_enemy.h"
-#include "items.h"
+#include "item.h"
 
 void critical_hit(npc *subject, npc *attacker) {
     switch(attacker->equipped->id) {
-        case HOOF_SPIKES:
+        case ITEM_HOOF_SPIKES:
            subject->health = subject->health - roll(2,5);
         break;
         default:
@@ -15,7 +15,7 @@ void critical_hit(npc *subject, npc *attacker) {
 
 void critical_miss(npc *subject, npc *attacker) {
     switch(attacker->equipped->id) {
-        case HOOF_SPIKES:
+        case ITEM_HOOF_SPIKES:
             switch(roll(1,2)) {
                 case 1:
                     //the hoof gets stuck! nomove for one turn!
@@ -34,7 +34,7 @@ void critical_miss(npc *subject, npc *attacker) {
 void damage(npc *subject, npc *attacker) {
     //what weapon?
     switch(attacker->equipped->id) {
-        case HOOF_SPIKES: /* defined in items.h */
+        case ITEM_HOOF_SPIKES: /* defined in item.h */
             subject->health = subject->health - roll(1,5); /* how do we get critchance? */
         break;
         default:
