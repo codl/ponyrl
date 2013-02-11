@@ -173,6 +173,11 @@ void draw_square(struct square* sq, const int x, const int y){
     }
     else if(sq->i){
         set_cursor(x, y);
+        switch(sq->i->item->type){
+            case ITEM_HOOF_SPIKES:
+                set_color(grey(20));
+                putchar(')');
+        }
         // TODO show an item
     }
 }

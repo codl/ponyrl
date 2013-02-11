@@ -61,3 +61,13 @@ void move_player(enum direction direction){
         }
     }
 }
+
+void pick_up(void){
+    struct itemlist* i = get_square(player.x, player.y, player.ele)->i;
+    if(!i){
+        putmsg("There is nothing to pick up here.");
+    }
+    else {
+        // TODO what would you like to pick up? blabla
+    }
+}

@@ -41,6 +41,15 @@ int main(void){
 
     SQUARE(get_tile(0,0,0)->tile.sq, 1,1)->c = &player;
 
+    struct item* spikes = malloc(sizeof(struct item));
+    spikes->type = ITEM_HOOF_SPIKES;
+
+    struct itemlist* a_list = malloc(sizeof(struct itemlist));
+    a_list->item = spikes;
+    a_list->next = 0;
+
+    SQUARE(get_tile(0,0,0)->tile.sq, 4,2)->i = a_list;
+
     draw_map(1,1,0);
 
     while(1){
@@ -69,6 +78,9 @@ int main(void){
                 break;
             case 'b':
                 move_player(SW);
+                break;
+            case ',':
+                pick_up();
                 break;
             case 'q':
                 screen_free();

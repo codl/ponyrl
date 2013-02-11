@@ -9,7 +9,7 @@
 struct creature{
     unsigned int type :CREA_LENGTH;
     int health;
-    int dex; // str, con, lck... ?
+    int dex; // str, con, lck... ? do they need to be signed? (can they be negative?)
     int x, y, ele;
     struct itemlist* inv;
     // ??? equipped;   maybe another itemlist that is a subset of inv?

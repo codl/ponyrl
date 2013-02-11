@@ -7,5 +7,6 @@
 struct creature player;
 
 void move_player(enum direction);
+void pick_up(void);
 
 #endif
