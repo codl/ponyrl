@@ -34,7 +34,21 @@ int main(void){
 
     player.x = 1;
     player.y = 1;
-    player.ele = 1;
+    player.ele = 0;
+    player.type = CREA_EARTH_PONY;
+    player.inv = 0;
+    player.health = 1;
+
+    SQUARE(get_tile(0,0,0)->tile.sq, 1,1)->c = &player;
+
+    struct item* spikes = malloc(sizeof(struct item));
+    spikes->type = ITEM_HOOF_SPIKES;
+
+    struct itemlist* a_list = malloc(sizeof(struct itemlist));
+    a_list->item = spikes;
+    a_list->next = 0;
+
+    SQUARE(get_tile(0,0,0)->tile.sq, 4,2)->i = a_list;
 
     draw_map(1,1,0);
 
@@ -65,13 +79,12 @@ int main(void){
             case 'b':
                 move_player(SW);
                 break;
+            case ',':
+                pick_up();
+                break;
             case 'q':
                 screen_free();
                 return 0;
         }
-        set_cursor(screen_width/2, screen_height/2);
-        set_background(grey(0));
-        set_color(grey(20));
-        putchar('@');
     }
 }

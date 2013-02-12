@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "map.h"
+#include "math.h"
 
 void fill_tile(struct square* sq, unsigned int terrain){
     int x, y;
@@ -7,6 +8,8 @@ void fill_tile(struct square* sq, unsigned int terrain){
         for(y = 0; y < TILESIZE; y++){
             SQUARE(sq, x, y)->terrain = terrain & 3;
             SQUARE(sq, x, y)->elevation = 0;
+            SQUARE(sq, x, y)->c = 0;
+            SQUARE(sq, x, y)->i = 0;
         }
 }
 
@@ -95,4 +98,8 @@ void gc_map(void){
         }
         list = next;
     }
+}
+
+struct square* get_square(int x, int y, int ele){
+    return SQUARE(get_tile(pos_div(x, TILESIZE), pos_div(y, TILESIZE), ele)->tile.sq, pos_mod(x, TILESIZE), pos_mod(y, TILESIZE));
 }

@@ -74,11 +74,11 @@ void screen_free(void){
     puts("\033[0m");
 }
 
-int rgb(const int r, const int g, const int b){
+static int rgb(const int r, const int g, const int b){
     return 16 + 36*r + 6*g + b;
 }
 
-int grey(const int b){
+static int grey(const int b){
     if(b==0) return 16;
     if(b==25) return 231;
     return 232 + b - 1;
@@ -160,4 +160,32 @@ void draw_square(struct square* sq, const int x, const int y){
             putchar(' ');
             break;
     }
+    if(sq->c != 0){
+        set_cursor(x, y);
+        switch(sq->c->type){
+            case CREA_EARTH_PONY:
+            case CREA_UNICORN:
+            case CREA_PEGASUS:
+                set_color(rgb(5, 2, 0));
+                putchar('u');
+                break;
+        }
+    }
+    else if(sq->i){
+        set_cursor(x, y);
+        switch(sq->i->item->type){
+            case ITEM_HOOF_SPIKES:
+                set_color(grey(20));
+                putchar(')');
+        }
+        // TODO show an item
+    }
+}
+
+void putmsg(const char* msg){
+    // TODO make an actual log thing
+    set_cursor(1,1);
+    set_background(grey(0));
+    set_color(grey(25));
+    puts(msg);
 }

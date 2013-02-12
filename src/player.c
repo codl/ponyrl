@@ -1,3 +1,5 @@
+#include <stdlib.h>
+#include <stdio.h>
 #include "player.h"
 #include "screen.h"
 #include "math.h"
@@ -5,7 +7,7 @@
 void move_player(enum direction direction){
     int x, y, ele;
     int xx, yy;
-    struct square /**from,*/ *to;
+    struct square *from, *to;
     struct tile *tilefrom, *tileto;
 
     x = xx = player.x;
@@ -38,17 +40,34 @@ void move_player(enum direction direction){
         tileto = tilefrom;
     else
         tileto = get_tile(pos_div(xx, TILESIZE), pos_div(yy, TILESIZE), 0);
-    //from = tilefrom->type == Array? SQUARE(tilefrom->tile.sq, x % TILESIZE, y % TILESIZE) : tilefrom->tile.fill;
+    from = tilefrom->type == Array? SQUARE(tilefrom->tile.sq, pos_mod(x, TILESIZE), pos_mod(y, TILESIZE)) : tilefrom->tile.fill;
     to = tileto->type == Array? SQUARE(tileto->tile.sq, pos_mod(xx, TILESIZE), pos_mod(yy, TILESIZE)) : tileto->tile.fill;
     // TODO handle elevation / going to adjacent layers
-    // also TODO put the player in the square
-    switch(to->terrain){
-        case(TERRAIN_ROCK_WALL):
-            //log("You bump into a wall.")
-            break;
-        default:
-            player.x = xx;
-            player.y = yy;
-            draw_map(xx, yy, ele);
+    if(to->c){
+        // TODO FIGHT or do other things I guess
+    }
+    else {
+        // try moving
+        switch(to->terrain){
+            case(TERRAIN_ROCK_WALL):
+                putmsg("You bump into a wall.");
+                break;
+            default:
+                from->c = 0;
+                player.x = xx;
+                player.y = yy;
+                to->c = &player;
+                draw_map(xx, yy, ele);
+        }
+    }
+}
+
+void pick_up(void){
+    struct itemlist* i = get_square(player.x, player.y, player.ele)->i;
+    if(!i){
+        putmsg("There is nothing to pick up here.");
+    }
+    else {
+        // TODO what would you like to pick up? blabla
     }
 }
