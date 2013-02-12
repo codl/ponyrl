@@ -1,0 +1,19 @@
+SPECIES
+
+Name:
+Description:
+
+BASE ROLLS:
+STR
+END
+DEX
+WIS
+INT
+CHR
+
+Base skills:
+[skillname : level 0-3]
+
+Flags:
+
+Notes:

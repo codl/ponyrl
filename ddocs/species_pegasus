@@ -1,0 +1,20 @@
+SPECIES
+
+Name: Pegasus
+Description: Flying ponies. Usually pretty athletic and nimble.
+
+BASE ROLLS:
+STR 1d8
+END 2d4
+DEX 2d4
+WIS 1d8
+INT 1d8
+CHR 1d8
+
+Base skills:
+wing blades : 1d2 between decent and skilled. (level 1 and 2)
+
+Flags:
+Can fly.
+
+Notes:

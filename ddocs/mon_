@@ -1,0 +1,25 @@
+MONSTER
+
+Name:
+Description:
+
+Species:
+
+Dialog:
+[Response : reason]
+
+Stats: 
+STR [If left undefined, assume standard roll for species]
+END
+DEX
+WIS
+INT
+CHR
+
+Flags:
+
+
+Skills:
+[Skill name : level 0-3]
+
+Notes:

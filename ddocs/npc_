@@ -1,0 +1,25 @@
+NON PLAYER CHARACTER
+
+Name:
+Description:
+
+Species:
+
+Dialog: [Point to a file if this thing has long dialog, if not, write responses below.]
+[Response : reason]
+
+Stats: (1-8)
+STR [If left undefined, assume standard roll for species.]
+END
+DEX
+WIS
+INT
+CHR
+
+Flags:
+[Does this character have any flags that affect it?]
+
+Skills:
+[Skill name : level 0-3]
+
+Notes:
