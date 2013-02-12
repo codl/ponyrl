@@ -1,11 +1,11 @@
 #ifndef DAMAGE_H
 #define DAMAGE_H
 
-#include "_enemy.h"
+#include "creature.h"
 
-void critical_hit(npc *subject, npc *attacker);
-void critical_miss(npc *subject, npc *attacker);
-void damage(npc *subject, npc *attacker);
-void hit(npc *subject, npc *attacker);
+void critical_hit(struct creature *subject, struct creature *attacker);
+void critical_miss(struct creature *subject, struct creature *attacker);
+void damage(struct creature *subject, struct creature *attacker);
+void hit(struct creature *subject, struct creature *attacker);
 
 #endif

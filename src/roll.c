@@ -1,12 +1,13 @@
 #include <stdlib.h>
+#include "roll.h"
 #include "time.h"
 
 int roll(int times, int sides) {
-    int i = 0;
+    int i;
     int sum = 0;
-    while(i > times) {
+    for(i = 0; i < times; i++) {
         sum = sum + (rand() % sides + 1);
-        ++i;
     }
     return sum;
 }
+

@@ -1,10 +1,10 @@
 #include "damage.h"
 #include "roll.h"
-#include "_enemy.h"
+#include "creature.h"
 #include "item.h"
 
-void critical_hit(npc *subject, npc *attacker) {
-    switch(attacker->equipped->id) {
+void critical_hit(struct creature *subject, struct creature *attacker) {
+    switch(attacker->wielded->type) {
         case ITEM_HOOF_SPIKES:
            subject->health = subject->health - roll(2,5);
         break;
@@ -13,8 +13,8 @@ void critical_hit(npc *subject, npc *attacker) {
     }
 }
 
-void critical_miss(npc *subject, npc *attacker) {
-    switch(attacker->equipped->id) {
+void critical_miss(struct creature *subject, struct creature *attacker) {
+    switch(attacker->wielded->type) {
         case ITEM_HOOF_SPIKES:
             switch(roll(1,2)) {
                 case 1:
@@ -31,9 +31,9 @@ void critical_miss(npc *subject, npc *attacker) {
     }
 }
 
-void damage(npc *subject, npc *attacker) {
+void damage(struct creature *subject, struct creature *attacker) {
     //what weapon?
-    switch(attacker->equipped->id) {
+    switch(attacker->wielded->type) {
         case ITEM_HOOF_SPIKES: /* defined in item.h */
             subject->health = subject->health - roll(1,5); /* how do we get critchance? */
         break;
@@ -43,13 +43,23 @@ void damage(npc *subject, npc *attacker) {
     }
 }
 
-void hit(npc *subject, npc *attacker) { /* we roll a d20 to see if we hit. */
-    /* I don't know */
-    if (subject->dex < roll(1,20)) { /* you need to get this value from whomever got hit. */
+void hit(struct creature *subject, struct creature *attacker) { /* we roll a d20 to see if we hit. */
+    int die = roll(1,20);
+    int penalty = 0;
+    
+    switch(attacker->wielded->group) {
+        case WEAPON_HOOF_MELEE:
+            // check for our required skill.
+            //penalty = skill_level(SKILL_HOOF_MELEE); // TODO add and implement this and critchance.
+        break;
+    }
+
+    if ((subject->dex + penalty) < die) { /* If you roll higher than the dex you hit. */
         damage(subject, attacker); /* he got hit. */
-    } else if (roll(1,20) == 1) { /* this value must be modified by critchance. 1=0.5% */
+    } else if (die == 1) { /* this value must be modified by critchance. 1=0.5% */
         critical_miss(subject, attacker);
     } else {
         //missed
     }
 }
+

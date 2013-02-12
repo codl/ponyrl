@@ -12,8 +12,11 @@ struct creature{
     int dex; // str, con, lck... ? do they need to be signed? (can they be negative?)
     int x, y, ele;
     struct itemlist* inv;
+    struct item* wielded; // Vivix: Is this okay?
     // ??? equipped;   maybe another itemlist that is a subset of inv?
     // int turn_counter;
 };
+
+// TODO add skill list, and skill check function.
 
 #endif
