@@ -7,7 +7,7 @@
 #define ITEM_LENGTH 1 // 0-1
 
 /* GROUP NAMES */
-#define WEAPON_HOOF_MELEE 0
+#define WEAPON_HOOF_MELEE 0 // is also the skill number. A PC/C's skill with this group.
 
 #define GROUP_LENGTH 1
 

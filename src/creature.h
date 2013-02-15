@@ -13,10 +13,28 @@ struct creature{
     int x, y, ele;
     struct itemlist* inv;
     struct item* wielded; // Vivix: Is this okay?
+    struct skill_list* skills; // _ because lllist is odd.
     // ??? equipped;   maybe another itemlist that is a subset of inv?
     // int turn_counter;
 };
 
-// TODO add skill list, and skill check function.
+/* skill section */
+
+#define SKILL_HOOF_MELEE 0 //NB: This is grouped with the GROUP list in item.h, do not know if they can be merged fully.
+
+#define SKILL_LENGTH 1
+
+struct skill {
+    unsigned int type :SKILL_LENGTH;
+    unsigned int level :3; // 0 1 2 3, unskilled decent skilled master
+    /* additional stuff */
+};
+
+struct skill_list {
+    struct skill* skill;
+    struct skill_list* next;
+};
+
+int skill_check(struct creature *subject, unsigned int type); /* returns skill level of a named skill from subject. */
 
 #endif

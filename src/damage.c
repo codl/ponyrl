@@ -45,21 +45,24 @@ void damage(struct creature *subject, struct creature *attacker) {
 
 void hit(struct creature *subject, struct creature *attacker) { /* we roll a d20 to see if we hit. */
     int die = roll(1,20);
-    int penalty = 0;
-    
-    switch(attacker->wielded->group) {
-        case WEAPON_HOOF_MELEE:
-            // check for our required skill.
-            //penalty = skill_level(SKILL_HOOF_MELEE); // TODO add and implement this and critchance.
-        break;
-    }
+    int evade = subject->dex;
+    int penalty = skill_check(attacker, attacker->wielded->group); // skill group.
 
-    if ((subject->dex + penalty) < die) { /* If you roll higher than the dex you hit. */
-        damage(subject, attacker); /* he got hit. */
-    } else if (die == 1) { /* this value must be modified by critchance. 1=0.5% */
-        critical_miss(subject, attacker);
+    evade = ((evade - penalty) <= 0)? 1 : (evade - penalty);
+
+    if (evade < die) { /* If you roll higher than the dex you hit. */
+        if ((penalty + 1) >= roll(1,20)) { // roll a critical hit check.
+            critical_hit(subject, attacker);
+        } else {
+            damage(subject, attacker); /* he got hit. */
+        }
     } else {
-        //missed
+        if (((4 - penalty) * 2) >= roll(1,20)) {
+            critical_miss(subject, attacker);
+        } else {
+            //putmessagge you missed
+        }
     }
+    //TODO Critical failure chance check.
 }
 
