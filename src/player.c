@@ -3,6 +3,7 @@
 #include "player.h"
 #include "screen.h"
 #include "math.h"
+#include "damage.h"
 
 void move_player(enum direction direction){
     int x, y, ele;
@@ -45,6 +46,8 @@ void move_player(enum direction direction){
     // TODO handle elevation / going to adjacent layers
     if(to->c){
         // TODO FIGHT or do other things I guess
+        hit(to->c,&player);
+        putmsg("Pawnch!");
     }
     else {
         // try moving

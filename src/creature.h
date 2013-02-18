@@ -9,7 +9,8 @@
 struct creature{
     unsigned int type :CREA_LENGTH;
     int health;
-    int dex; // str, con, lck... ? do they need to be signed? (can they be negative?)
+//  int dex; // str, con, lck... ? do they need to be signed? (can they be negative?)
+    unsigned int str, end, dex, wis, intl, chr : 8; // 1-8
     int x, y, ele;
     struct itemlist* inv;
     struct item* wielded; // Vivix: Is this okay?

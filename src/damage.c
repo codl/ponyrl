@@ -63,6 +63,5 @@ void hit(struct creature *subject, struct creature *attacker) { /* we roll a d20
             //putmessagge you missed
         }
     }
-    //TODO Critical failure chance check.
 }
 

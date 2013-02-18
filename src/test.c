@@ -50,6 +50,13 @@ int main(void){
 
     SQUARE(get_tile(0,0,0)->tile.sq, 4,2)->i = a_list;
 
+    struct creature *earth_pony = malloc(sizeof(struct creature));
+    earth_pony->type = 0;
+    earth_pony->health = 5; /* test value */
+    earth_pony->dex = 5;
+    
+    SQUARE(get_tile(0,0,0)->tile.sq, 3,3)->c = &earth_pony;
+    
     draw_map(1,1,0);
 
     while(1){
