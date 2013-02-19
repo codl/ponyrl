@@ -3,8 +3,10 @@
 #include "creature.h"
 #include "item.h"
 
+#define GET_WIELDED(who) (who->wielded == 0)?0:who->wielded->type
+
 void critical_hit(struct creature *subject, struct creature *attacker) {
-    switch(attacker->wielded->type) {
+    switch(GET_WIELDED(attacker)) {
         case ITEM_HOOF_SPIKES:
            subject->health = subject->health - roll(2,5);
         break;
@@ -14,7 +16,7 @@ void critical_hit(struct creature *subject, struct creature *attacker) {
 }
 
 void critical_miss(struct creature *subject, struct creature *attacker) {
-    switch(attacker->wielded->type) {
+    switch(GET_WIELDED(attacker)) {
         case ITEM_HOOF_SPIKES:
             switch(roll(1,2)) {
                 case 1:
@@ -33,7 +35,7 @@ void critical_miss(struct creature *subject, struct creature *attacker) {
 
 void damage(struct creature *subject, struct creature *attacker) {
     //what weapon?
-    switch(attacker->wielded->type) {
+    switch(GET_WIELDED(attacker)) {
         case ITEM_HOOF_SPIKES: /* defined in item.h */
             subject->health = subject->health - roll(1,5); /* how do we get critchance? */
         break;
@@ -46,7 +48,7 @@ void damage(struct creature *subject, struct creature *attacker) {
 void hit(struct creature *subject, struct creature *attacker) { /* we roll a d20 to see if we hit. */
     int die = roll(1,20);
     int evade = subject->dex;
-    int penalty = skill_check(attacker, attacker->wielded->group); // skill group.
+    int penalty = 0;//skill_check(attacker, attacker->wielded->group); // skill group.
 
     evade = ((evade - penalty) <= 0)? 1 : (evade - penalty);
 

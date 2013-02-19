@@ -4,11 +4,12 @@
 /* skill functions */
 
 int skill_check(struct creature *subject, unsigned int type) {
-    while(subject->skills != 0) {
-        if (subject->skills->skill->type == type) {
-            return subject->skills->skill->level;
+    struct skill_list* list = subject->skills;
+    while(list != 0) {
+        if (list->skill->type == type) {
+            return list->skill->level;
         }
-        subject->skills = subject->skills->next;
+        list = list->next;
     }
     return 0; // if the PC/C does not have this skill in his or her list, this assumes it to be unskilled.
 }
