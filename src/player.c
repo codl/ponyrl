@@ -47,7 +47,6 @@ void move_player(enum direction direction){
     if(to->c){
         // TODO FIGHT or do other things I guess
         hit(to->c,&player);
-        putmsg("Pawnch!");
     }
     else {
         // try moving
